@@ -3,10 +3,24 @@ package cap05;
 public class Pessoa {
 
   //atributo
-  String nome;
-  int idade;
-  String pais;
-  double altura;
+  String nome; // valor default null
+  int idade;   // valor default 0
+  String pais; // valor default null
+  double altura; // valor default 0.0
+  boolean estadoCivil; // valor default false
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   void falar(){

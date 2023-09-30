@@ -1,5 +1,8 @@
 package cap04;
 
+import cap05.Aluno;
+import cap05.TesteAluno;
+
 public class While {
 
   public static void main(String[] args) {
@@ -21,5 +24,8 @@ public class While {
     do {
       System.out.println("o valor do numero é: " + numero);
     } while (--numero > 0);
+
+    Aluno aluno = new Aluno();
+    TesteAluno testeAluno = new TesteAluno();
   }
 }

@@ -4,7 +4,8 @@ public class Teste {
 
   public static void main(String[] args) {
 
-    int soma = 0;
+    int soma;
+    Pessoa pessoa;
 
     Pessoa batata = new Pessoa(); // instancia da classe Pessoa = objeto
 
@@ -46,5 +47,6 @@ public class Teste {
     idade1 = idade2;
 
     System.out.println();
+
   }
 }
