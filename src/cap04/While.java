@@ -2,7 +2,6 @@ package cap04;
 
 public class While {
 
-
   public static void main(String[] args) {
 
     int numero = 10;
