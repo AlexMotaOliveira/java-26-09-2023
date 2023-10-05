@@ -5,6 +5,7 @@ public class Aluno {
   private String nome;
   private int idade;
   private int matricula;
+  private String rg;
 
   public String getNome() {
     return nome;
