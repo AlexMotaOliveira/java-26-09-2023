@@ -54,6 +54,14 @@ public class Calculadora {
     return fator1 * fator2;
   }
 
+  public long multiplicar(int[] numeros) {
+    int produto = 1;
+    for (int item: numeros) {
+      produto *= item;
+    }
+    return produto;
+  }
+
   public String concatenar(String texto1, String texto2) {
     return texto1 + texto2;
   }

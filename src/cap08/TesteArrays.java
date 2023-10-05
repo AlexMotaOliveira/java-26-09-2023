@@ -32,6 +32,11 @@ public class TesteArrays {
       System.out.print(" ");
     }
 
+    //foreach
+    for (int cadaItem : array2) {
+      System.out.println(cadaItem);
+    }
+
     System.out.println();
 
     System.out.println(array2[3]);
@@ -59,7 +64,9 @@ public class TesteArrays {
     nota[2][1] = 4;
 
     for (int x = 0; x < nota.length; x++) {
+
       for (int y = 0; y < nota[x].length; y++) {
+
         System.out.print(nota[x][y]);
         System.out.print(" ");
       }
@@ -70,40 +77,63 @@ public class TesteArrays {
 // [unidade][turma][aluno]=
     int[][][] notas = new int[3][2][3];
 
-    notas[0][0][0] = 10;
-    notas[0][0][1] = 10;
-    notas[0][0][2] = 10;
+    notas[0][0][0] = 1;
+    notas[0][0][1] = 1;
+    notas[0][0][2] = 1;
 
-    notas[0][1][0] = 10;
-    notas[0][1][1] = 10;
-    notas[0][1][2] = 10;
+    notas[0][1][0] = 2;
+    notas[0][1][1] = 2;
+    notas[0][1][2] = 2;
 
-    notas[1][0][0] = 10;
-    notas[1][0][1] = 10;
-    notas[1][0][2] = 10;
+    notas[1][0][0] = 3;
+    notas[1][0][1] = 3;
+    notas[1][0][2] = 3;
 
-    notas[1][1][0] = 10;
-    notas[1][1][1] = 10;
-    notas[1][1][2] = 10;
+    notas[1][1][0] = 4;
+    notas[1][1][1] = 4;
+    notas[1][1][2] = 4;
 
-    notas[2][0][0] = 10;
-    notas[2][0][1] = 10;
-    notas[2][0][2] = 10;
+    notas[2][0][0] = 5;
+    notas[2][0][1] = 5;
+    notas[2][0][2] = 5;
 
-    notas[2][1][0] = 10;
-    notas[2][1][1] = 10;
-    notas[2][1][2] = 10;
+    notas[2][1][0] = 6;
+    notas[2][1][1] = 6;
+    notas[2][1][2] = 6;
 
-    for (int x = 0; x < nota.length; x++) {
-      for (int y = 0; y < nota[x].length; y++) {
-        for (int z = 0; z < nota[x][y]; z++) {
-          System.out.print(nota[x][y]);
+    System.out.println("------------------");
+    for (int x = 0; x < notas.length; x++) {
+      // 3
+      for (int y = 0; y < notas[x].length; y++) {
+        //2
+        for (int z = 0; z < notas[x][y].length; z++) {
+          //3
+          //                     1  0  0
+          System.out.print(notas[x][y][z]);
           System.out.print(" ");
         }
+        System.out.println();
       }
       System.out.println();
     }
-
     System.out.println();
+
+
+    int[] array10 = {56, 30, 4, 10, 6}; // 4 index 0 a 3
+    int[] array11 = new int[]{56, 30, 4, 10, 6}; // 4 index 0 a 3
+
+    //foreach
+    System.out.println("foreach");
+
+    int resultado = 0;
+    for (int cadaItem : array10) {
+      resultado += cadaItem;
+      System.out.println("soma a cada iteração: " + resultado);
+    }
+
+    for (String item: args) {
+      System.out.println("parametro do metodo main: " + item);
+    }
   }
+
 }
