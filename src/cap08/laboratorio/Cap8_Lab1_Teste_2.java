@@ -6,11 +6,12 @@ public class Cap8_Lab1_Teste_2 {
 
   public static void main(String[] args) {
 
-    Scanner scanner = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in); // todos os inputs sempre são String
     int[] numeros = new int[10];
 
     for (int x = 0; x < 10; x++){
       int input = scanner.nextInt();
+      int parametroMain = Integer.parseInt(args[x]);
       numeros[x] = input;
     }
 
