@@ -7,6 +7,5 @@ public class Funcionario {
   public String cargo;
   public double salario;
 
-  // TODO: 02/10/2023 voltamos 21:30 
 
 }

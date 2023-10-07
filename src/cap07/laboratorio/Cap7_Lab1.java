@@ -17,6 +17,5 @@ public class Cap7_Lab1 {
     Cadastro cadastro3 = new Cadastro("Maria", "Silva", 30);
     cadastro3.mostrar();
 
-    // TODO: 04/10/2023   voltamos 21:40
   }
 }
