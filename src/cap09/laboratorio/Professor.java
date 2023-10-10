@@ -46,6 +46,7 @@ public class Professor extends Pessoa {
   public void mostrarDados() {
     System.out.println(super.toString());
     System.out.println(toString());
+    System.out.println();
   }
 
   @Override
@@ -54,5 +55,10 @@ public class Professor extends Pessoa {
       "salario=" + salario +
       ", disciplina='" + disciplina + '\'' +
       '}';
+  }
+
+  @Override
+  public String getNome() {
+    return super.getNome().toUpperCase();
   }
 }

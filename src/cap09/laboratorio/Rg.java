@@ -28,4 +28,12 @@ public class Rg {
   public void setDataNasc(String dataNasc) {
     this.dataNasc = dataNasc;
   }
+
+  @Override
+  public String toString() {
+    return "Rg{" +
+      "numero=" + numero +
+      ", dataNasc='" + dataNasc + '\'' +
+      '}';
+  }
 }

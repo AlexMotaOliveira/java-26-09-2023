@@ -10,6 +10,7 @@ public abstract class Pessoa{
   // composição
   private Rg rg;
 
+
   public Pessoa(String nome, int idade, char sexo, Rg rg){
     this.nome = nome;
     this.idade = idade;
