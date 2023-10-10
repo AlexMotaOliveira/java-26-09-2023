@@ -11,7 +11,12 @@ public interface Eletrodomestico {
   static void ligar(Eletrodomestico... lista) {
     for (Eletrodomestico item : lista) {
       item.ligar();
+      imprimir();
     }
+  }
+
+  private static void imprimir() {
+    System.out.println("metodo privado da interface");
   }
 
 }

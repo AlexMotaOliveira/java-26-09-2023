@@ -2,9 +2,7 @@ package cap10;
 
 public class AppGeladeira {
 
-
   public static void main(String[] args) {
-
 
     Eletrodomestico geladeira = new Geladeira();
     geladeira.ligar();
