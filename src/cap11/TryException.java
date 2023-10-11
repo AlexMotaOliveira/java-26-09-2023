@@ -10,6 +10,7 @@ public class TryException {
     String texto = scanner.nextLine();
 
     try {
+      int valor = Integer.parseInt(texto);
       int resultado = converterString(texto);
     } catch (NumeroInvalidoException e) {
       System.out.println(e);
