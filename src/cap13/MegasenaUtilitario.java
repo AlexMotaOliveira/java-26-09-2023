@@ -19,18 +19,13 @@ public class MegasenaUtilitario {
     int numero = sorteador.nextInt(max) + 1; // 1 até 60
 //    System.out.println(random.nextInt()); // bug critico classe A
 
-    if (true){
+    if (true) {
 
-    }else {
+    } else {
 
     }
     return numero;
   }
-
-
-
-
-
 
   public static int sortearNumero() {
     Random sorteador = new Random();
@@ -40,4 +35,31 @@ public class MegasenaUtilitario {
     }
     return numero;
   }
+
+  //TODO
+  public static int[] numerosSorteados() {
+
+    int[] jogoMegaSena = new int[6];
+
+    for (int i = 0; i < jogoMegaSena.length; i++) {
+
+      boolean validador = true;
+      int numeroSorteado = sortearNumero(6);
+
+      // valida se dentro do jogoMegaSena já existe o numero sorteado
+      for (int j = 0; j < jogoMegaSena.length; j++) {
+        if (jogoMegaSena[i] == numeroSorteado) {
+          validador = false; // muda para false para não adicionar um numero já existente
+          i--; // volta o contador para a mesma posição
+          break;
+        }
+      }
+      // add um numero caso ele não exista no array
+      if (validador) {
+        jogoMegaSena[i] = numeroSorteado;
+      }
+    }
+    return jogoMegaSena;
+  }
+
 }
