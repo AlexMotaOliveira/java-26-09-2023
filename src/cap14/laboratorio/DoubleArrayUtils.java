@@ -1,5 +1,9 @@
 package cap14.laboratorio;
 
+import java.util.function.DoubleConsumer;
+import java.util.function.DoublePredicate;
+import java.util.function.DoubleUnaryOperator;
+
 public class DoubleArrayUtils {
 
   public static double[] transformaValores(double[] valores, DoubleUnaryOperator funcao) {

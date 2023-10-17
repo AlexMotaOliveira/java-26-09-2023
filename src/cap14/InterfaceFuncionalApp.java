@@ -2,6 +2,7 @@ package cap14;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class InterfaceFuncionalApp {
 
@@ -61,6 +62,6 @@ public class InterfaceFuncionalApp {
     Imprimir2 imprimir2 = () -> System.out.println("palavra");
     imprimir2.imprmirConsole();
 
-
+    Consumer consumer = o -> System.out.println(o);
   }
 }
