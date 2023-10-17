@@ -44,7 +44,7 @@ public class MegasenaUtilitario {
     for (int i = 0; i < jogoMegaSena.length; i++) {
 
       boolean validador = true;
-      int numeroSorteado = sortearNumero(6);
+      int numeroSorteado = sortearNumero(60);
 
       // valida se dentro do jogoMegaSena já existe o numero sorteado
       for (int j = 0; j < jogoMegaSena.length; j++) {
