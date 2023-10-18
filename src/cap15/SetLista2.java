@@ -1,5 +1,6 @@
 package cap15;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -9,7 +10,7 @@ public class SetLista2 {
   public static void main(String[] args) {
 
 
-    Set<Produto> produtos = new TreeSet<>();
+    Set<Produto> produtos = new HashSet<>();
 
     Produto produto = new Produto();
     produto.setNome("Coco Cola");
