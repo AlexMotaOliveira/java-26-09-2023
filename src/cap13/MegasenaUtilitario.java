@@ -1,6 +1,9 @@
 package cap13;
 
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class MegasenaUtilitario {
 
@@ -64,9 +67,20 @@ public class MegasenaUtilitario {
 
 
   // TODO: 17/10/2023 como usar o SET e não duplicar os dados na list
-  // TODO: 17/10/2023 21:35
-  public static int[] numerosSorteados(int maxNumeroSorteado) {
-    return null;
+
+  public static Set<Integer> numerosSorteados(int maxNumeroSorteado, int quantidade) {
+    if (maxNumeroSorteado < quantidade) {
+//      return new HashSet<>();
+      throw new MegasenaUtilitarioException("maxNumeroSorteado não pode ser inferior a quantidade");
+    }
+
+    Set<Integer> jogoMegaSena = new HashSet<>(quantidade);
+
+    while (jogoMegaSena.size() < quantidade) {
+      int numeroSorteado = sortearNumero(maxNumeroSorteado);
+      jogoMegaSena.add(numeroSorteado);
+    }
+    return new TreeSet<>(jogoMegaSena);
   }
 
 }

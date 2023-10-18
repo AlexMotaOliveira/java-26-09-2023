@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
+import java.util.Set;
+
 // junit5
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class) // regra de ordenação
 public class MegasenaTeste {
@@ -87,6 +89,24 @@ public class MegasenaTeste {
         }
       }
     }
+  }
+
+  @Test
+  void validadorNumerosMegaListSetMaxNumeroSorteadoMenorQuantidade(){
+    int quantidade = 15;
+//    Assertions.assertTrue(jogoMegaSena.size() == 0);
+    Assertions
+      .assertThrows(
+        MegasenaUtilitarioException.class,
+        () -> MegasenaUtilitario.numerosSorteados(10, quantidade));
+  }
+
+  @Test
+  void validadorNumerosMegaListSetMaxNumeroSorteadoMaiorQuantidade(){
+    int quantidade = 15;
+    Set<Integer> jogoMegaSena = MegasenaUtilitario.numerosSorteados(100, quantidade);
+    jogoMegaSena.forEach(System.out::println);
+    Assertions.assertTrue(jogoMegaSena.size() == quantidade);
   }
 
 }

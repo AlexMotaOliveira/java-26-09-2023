@@ -1,8 +1,8 @@
 package cap15;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class SetTeste {
 
@@ -22,7 +22,23 @@ public class SetTeste {
     paises.add("Inglaterra"); // 8
     paises.add("Inglaterra"); // 9
 
-    paises.forEach(System.out::println);
+    paises.contains("");
+    paises.remove("");
+    paises.clear();
+
+    Iterator<String> iterator = paises.iterator();
+
+    while (iterator.hasNext()) {
+      String pais = iterator.next();
+      if (pais == "Brasil")
+        System.out.println(pais);
+    }
+
+    paises.forEach(pais -> {
+      if (pais == "Brasil") {
+        System.out.println(pais);
+      }
+    });
 
 
   }
