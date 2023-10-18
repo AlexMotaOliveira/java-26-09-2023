@@ -1,4 +1,4 @@
-package cap15;
+package cap15.list;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,8 +1,9 @@
-package cap15;
+package cap15.set;
+
+import cap15.map.Produto;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class SetLista2 {
 

@@ -1,4 +1,4 @@
-package cap15;
+package cap15.set;
 
 import java.util.HashSet;
 import java.util.Iterator;

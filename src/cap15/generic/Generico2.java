@@ -1,4 +1,4 @@
-package cap15;
+package cap15.generic;
 
 // classe generica
 public class Generico2<T> {

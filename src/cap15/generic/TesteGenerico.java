@@ -1,4 +1,4 @@
-package cap15;
+package cap15.generic;
 
 import cap07.Aluno;
 

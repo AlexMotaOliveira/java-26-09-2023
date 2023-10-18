@@ -1,4 +1,4 @@
-package cap15;
+package cap15.map;
 
 public class Produto {
 
