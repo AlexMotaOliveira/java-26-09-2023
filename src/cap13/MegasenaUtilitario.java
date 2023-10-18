@@ -62,4 +62,11 @@ public class MegasenaUtilitario {
     return jogoMegaSena;
   }
 
+
+  // TODO: 17/10/2023 como usar o SET e não duplicar os dados na list
+  // TODO: 17/10/2023 21:35
+  public static int[] numerosSorteados(int maxNumeroSorteado) {
+    return null;
+  }
+
 }
