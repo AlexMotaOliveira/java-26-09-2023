@@ -1,0 +1,26 @@
+1- Crie uma classe com o nome Produto com os seguintes atributos.
+        codigo:Interger
+        nome:String
+        quantidade:Integer
+        quantidadeMinimaEstoque:Integer
+
+        Crie um construtor recebendo todos os atributos.
+        Crie os métodos get/set
+        Crie um método com nome adicionarQuantidadeProduto, que some a quantidade ao existente
+        Crie um método com nome subtrairQuantidadeProduto, que subtrai a quantidade ao existente
+        Crie um método para validar se um produto está quantidade inferior a quantidadeMinimaEstoque.
+
+2- Crie uma classe com o nome Empresa com os seguintes atributos.
+        nome:String
+        Produtos:Map<Integer, Produto>
+        Chave = código
+        Valor = Produto
+
+        Crie um construtor que receba somente o nome da empresa
+        Crie os métodos get/set
+        Crie um método com nome adicionarProduto, que adiona um produto na lista de produtos
+        Crie um método com nome excluirProduto, que exclui um produto na lista de produtos
+        Crie um método com nome retornarCodigoLista, que retorna somente uma lista dos códigos dos produtos
+        Crie um método com nome retornarProdutoLista, que retorna uma lista dos produtos
+        Crie um método com nome  tamanhoListaProdutos, que informa a quantidade de produtos da empresa
+        Crie um método com nome existeProduto, que verifica se um Produto existe.
