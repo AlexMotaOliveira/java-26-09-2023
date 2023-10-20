@@ -67,4 +67,6 @@ public class Funcionario implements Comparable {
       return 1;
     }
   }
+
+  // TODO: 19/10/2023 voltamos 21:35
 }
