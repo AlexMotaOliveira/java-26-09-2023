@@ -13,6 +13,7 @@ public class AppMegasena {
   public static void main(String[] args) {
     /**
      * @see MegasenaUtilitario
+     *
      */
 
     for (int i = 0; i < 6; i++) {
