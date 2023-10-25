@@ -20,9 +20,7 @@ SELECT * FROM impacta.pessoa;
 INSERT INTO `impacta`.`pessoa` (`nome`, `cpf`) VALUES ('Alex Mota', '12345678912');
 INSERT INTO `impacta`.`pessoa` VALUES (2, 'Maria Mota', '32165498732');
 
-UPDATE `impacta`.`pessoa`
-SET `nome` = 'Alex Mota'
-WHERE (`idpessoa` = '1');
+UPDATE `impacta`.`pessoa`SET `nome` = 'Alex Mota' WHERE (`idpessoa` = '1');
 
 UPDATE `impacta`.`pessoa`
 SET `nome` = 'Maria Mota'

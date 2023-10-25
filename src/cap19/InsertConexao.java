@@ -1,4 +1,4 @@
-package cap18;
+package cap19;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,19 +21,19 @@ public class InsertConexao {
 
       PreparedStatement ps = connection.prepareStatement(query);
 
-      String nome = "Luiza Santos";
+      String nome = "Jose Silva";
       ps.setString(1, nome);
 
-      int idpessoa = 5;
+      int idpessoa = 6;
       ps.setInt(3, idpessoa);
 
-      String cpf = "3658741259";
+      String cpf = "3698741259";
       ps.setString(2, cpf);
 
-      if (ps.execute()) {
+      if (ps.executeUpdate() > 0) {
         System.out.println("add com sucesso");
       } else {
-        System.out.println("nomeão foi add");
+        System.out.println("nome não foi add");
       }
     } catch (SQLException e) {
       e.printStackTrace();

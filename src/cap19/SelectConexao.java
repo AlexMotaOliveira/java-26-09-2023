@@ -1,4 +1,4 @@
-package cap18;
+package cap19;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,26 +14,19 @@ public class SelectConexao {
     String senha = "123456";
     String urlConexao = "jdbc:mysql://localhost:3306/impacta?useTimezone=true&serverTimezone=UTC";
 
-    Connection connection = null;
-    try {
-      connection = DriverManager.getConnection(urlConexao, usuario, senha);
+    String query = "SELECT * FROM pessoa";
 
-      Statement statement = connection.createStatement();
+    try (Connection connection = DriverManager.getConnection(urlConexao, usuario, senha);
+         Statement statement = connection.createStatement();
+         ResultSet resultSet = statement.executeQuery(query)) {
 
-      String query = "SELECT * FROM pessoa";
-
-      ResultSet resultSet = statement.executeQuery(query);
-
-      while (resultSet.next()){
+      while (resultSet.next()) {
         int idpessoa = resultSet.getInt("idpessoa");
         String nome = resultSet.getString("nome");
         String cpf = resultSet.getString("cpf");
 
         System.out.println("idpessoa: " + idpessoa + " nome: " + nome + " cpf: " + cpf);
-
       }
-
-      System.out.println();
 
       // consulta
     } catch (SQLException e) {
