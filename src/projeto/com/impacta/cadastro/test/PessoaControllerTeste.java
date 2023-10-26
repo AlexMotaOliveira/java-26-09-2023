@@ -22,8 +22,10 @@ public class PessoaControllerTeste {
 
     Pessoa pessoa = new Pessoa("Alex Mota", "12345678932");
     System.out.println("Test: criou o objeto pessoa:" + pessoa);
+
     Pessoa pessoaEntity = pessoaController.cadastrar(pessoa);
     System.out.println("Test: executou o metodo salvar");
+
     Assertions.assertNotNull(pessoaEntity);
   }
 
