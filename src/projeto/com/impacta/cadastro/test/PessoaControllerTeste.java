@@ -18,20 +18,20 @@ public class PessoaControllerTeste {
 
   @Test
     // teste positivo
-  void cadastrarPessoaTeste() {
+  void cadastrarPessoaTesteOK() {
 
-    Pessoa pessoa = new Pessoa("Alex Mota", "12345678932");
+    Pessoa pessoa = new Pessoa("Jose Silva Santos", "22345978936");
     System.out.println("Test: criou o objeto pessoa:" + pessoa);
 
     Pessoa pessoaEntity = pessoaController.cadastrar(pessoa);
-    System.out.println("Test: executou o metodo salvar");
+    System.out.println("Test: executou o metodo salvar: " + pessoaEntity);
 
     Assertions.assertNotNull(pessoaEntity);
   }
 
   @Test
     // teste negativo
-  void cadastrarPessoaNomeOuCpfNuloTeste() {
+  void cadastrarPessoaNomeOuCpfNuloTesteNok() {
 
     Pessoa pessoa = new Pessoa("Roberto", null);
 
@@ -39,4 +39,27 @@ public class PessoaControllerTeste {
       () -> pessoaController.cadastrar(pessoa));
 
   }
+
+  @Test
+  void buscarPessoaPeloIdPessoaTesteOk(){
+
+    int idPessoa = 11;
+
+    Pessoa pessoaEntity = pessoaController.buscarPorIdPessoa(idPessoa);
+
+    Assertions.assertNotNull(pessoaEntity);
+    Assertions.assertTrue(idPessoa ==  pessoaEntity.getIdPessoa());
+    Assertions.assertEquals(idPessoa, pessoaEntity.getIdPessoa());
+  }
+
+  @Test
+  void buscarPessoaPeloIdPessoaTesteNok(){
+
+    int idPessoa = 1000;
+
+    Pessoa pessoaEntity = pessoaController.buscarPorIdPessoa(idPessoa);
+
+    Assertions.assertNull(pessoaEntity);
+  }
+
 }
