@@ -1,4 +1,4 @@
-package projeto.com.impacta.cadastro.exception;
+package projeto.com.impacta.cadastro.java.exception;
 
 public class PessoaException extends RuntimeException {
 

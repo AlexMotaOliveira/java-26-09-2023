@@ -1,7 +1,9 @@
-package projeto.com.impacta.cadastro.controller;
+package projeto.com.impacta.cadastro.java.controller;
 
-import projeto.com.impacta.cadastro.model.Pessoa;
-import projeto.com.impacta.cadastro.service.PessoaService;
+import projeto.com.impacta.cadastro.java.model.Pessoa;
+import projeto.com.impacta.cadastro.java.service.PessoaService;
+
+import java.util.List;
 
 public class PessoaController {
 
@@ -23,6 +25,10 @@ public class PessoaController {
 
   public Pessoa buscarPorCpf(String cpf){
     return pessoaService.buscarPorCpf(cpf);
+  }
+
+  public List<Pessoa> buscarTodos(){
+    return pessoaService.buscarTodos();
   }
 
 }

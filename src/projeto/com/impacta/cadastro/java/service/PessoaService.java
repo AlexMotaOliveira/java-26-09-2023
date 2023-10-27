@@ -1,8 +1,10 @@
-package projeto.com.impacta.cadastro.service;
+package projeto.com.impacta.cadastro.java.service;
 
-import projeto.com.impacta.cadastro.exception.PessoaException;
-import projeto.com.impacta.cadastro.model.Pessoa;
-import projeto.com.impacta.cadastro.repository.PessoaRepositoryImpl;
+import projeto.com.impacta.cadastro.java.exception.PessoaException;
+import projeto.com.impacta.cadastro.java.model.Pessoa;
+import projeto.com.impacta.cadastro.java.repository.PessoaRepositoryImpl;
+
+import java.util.List;
 
 // regras de negocio
 public class PessoaService {
@@ -32,5 +34,9 @@ public class PessoaService {
 
   public Pessoa buscarPorCpf(String cpf) {
     return pessoaRepository.findByCpf(cpf);
+  }
+
+  public List<Pessoa> buscarTodos() {
+    return pessoaRepository.findByAll();
   }
 }

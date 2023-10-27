@@ -1,4 +1,4 @@
-package projeto.com.impacta.cadastro.model;
+package projeto.com.impacta.cadastro.java.model;
 
 // entidade
 // modelo
