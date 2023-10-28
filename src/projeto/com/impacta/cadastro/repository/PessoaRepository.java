@@ -1,6 +1,6 @@
-package projeto.com.impacta.cadastro.java.repository;
+package projeto.com.impacta.cadastro.repository;
 
-import projeto.com.impacta.cadastro.java.model.Pessoa;
+import projeto.com.impacta.cadastro.model.Pessoa;
 
 import java.util.List;
 

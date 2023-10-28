@@ -1,7 +1,7 @@
-package projeto.com.impacta.cadastro.java.repository;
+package projeto.com.impacta.cadastro.repository;
 
-import projeto.com.impacta.cadastro.java.exception.PessoaException;
-import projeto.com.impacta.cadastro.java.model.Pessoa;
+import projeto.com.impacta.cadastro.exception.PessoaException;
+import projeto.com.impacta.cadastro.model.Pessoa;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -46,8 +46,8 @@ public class PessoaRepositoryImpl implements PessoaRepository {
 
     String query = "SELECT * FROM impacta.pessoa where idpessoa = ?";
 
-    try(Connection connection = getConnection();
-    PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+    try (Connection connection = getConnection();
+         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
       preparedStatement.setInt(1, idPessoa);
 
@@ -55,7 +55,7 @@ public class PessoaRepositoryImpl implements PessoaRepository {
 
       return getPessoa(resultSet);
 
-    }catch (SQLException e ){
+    } catch (SQLException e) {
       e.printStackTrace();
     }
 
@@ -63,14 +63,13 @@ public class PessoaRepositoryImpl implements PessoaRepository {
   }
 
 
-
   @Override
   public Pessoa findByCpf(String cpf) {
 
     String query = "SELECT * FROM impacta.pessoa where cpf = ?";
 
-    try(Connection connection = getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+    try (Connection connection = getConnection();
+         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
       preparedStatement.setString(1, cpf);
 
@@ -78,7 +77,7 @@ public class PessoaRepositoryImpl implements PessoaRepository {
 
       return getPessoa(resultSet);
 
-    }catch (SQLException e ){
+    } catch (SQLException e) {
       e.printStackTrace();
     }
 
@@ -92,31 +91,71 @@ public class PessoaRepositoryImpl implements PessoaRepository {
 
   @Override
   public List<Pessoa> findByAll() {
+    List<Pessoa> pessoas = new ArrayList<>();
 
-    String query = "SELECT * FROM impacat.pessoa";
+    String query = "SELECT * FROM impacta.pessoa";
 
     try (Connection connection = getConnection();
          Statement statement = connection.createStatement()) {
 
       ResultSet resultSet = statement.executeQuery(query);
 
-      // TODO: 26/10/2023 preciso pegar cada linha data tabela 
-      // TODO: 26/10/2023 add em uma lista e retornar os objetos 
-      
+      boolean isNotNullpessoa;
+      do {
+        Pessoa pessoa = getPessoa(resultSet);
+        isNotNullpessoa = pessoa != null;
+        if (isNotNullpessoa) {
+          pessoas.add(pessoa);
+        }
+      } while (isNotNullpessoa);
 
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    return new ArrayList<>();
+    return pessoas;
   }
 
   @Override
   public Pessoa update(Pessoa pessoa) {
+
+    String query = "UPDATE impacta.pessoa " +
+                      "SET nome = ?, " +
+                          "cpf = ? " +
+                      "WHERE (`idpessoa` = ?)";
+
+    try (Connection connection = getConnection();
+         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+      preparedStatement.setString(1, pessoa.getNome());
+      preparedStatement.setString(2, pessoa.getCpf());
+      preparedStatement.setInt(3, pessoa.getIdPessoa());
+
+      if (preparedStatement.executeUpdate() > 0) {
+        return findByIdPessoa(pessoa.getIdPessoa());
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
     return null;
   }
 
   @Override
   public int delete(int idPessoa) {
+
+    String query = "DELETE FROM impacta.pessoa where idPessoa = ?;";
+
+    try (Connection connection = getConnection();
+         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+      preparedStatement.setInt(1, idPessoa);
+
+      int linhasExcluidas = preparedStatement.executeUpdate();
+      if (linhasExcluidas > 0) {
+        return linhasExcluidas;
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
     return 0;
   }
 
@@ -129,8 +168,8 @@ public class PessoaRepositoryImpl implements PessoaRepository {
     return DriverManager.getConnection(urlConexao, usuario, senha);
   }
 
-  private Pessoa getPessoa(ResultSet resultSet) throws SQLException{
-    if (resultSet.next()){
+  private Pessoa getPessoa(ResultSet resultSet) throws SQLException {
+    if (resultSet.next()) {
       int idPessoa = resultSet.getInt("idpessoa");
       String nome = resultSet.getString("nome");
       String cpf = resultSet.getString("cpf");

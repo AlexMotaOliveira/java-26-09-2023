@@ -23,7 +23,7 @@ INSERT INTO `impacta`.`pessoa` VALUES (2, 'Maria Mota', '32165498732');
 UPDATE `impacta`.`pessoa`SET `nome` = 'Alex Mota' WHERE (`idpessoa` = '1');
 
 UPDATE `impacta`.`pessoa`
-SET `nome` = 'Maria Mota'
+SET `nome` = 'Maria Mota' , `cpf` = '13655442555'
 WHERE (`idpessoa` = '2');
 
 DELETE FROM `impacta`.`pessoa`

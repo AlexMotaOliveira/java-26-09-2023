@@ -3,9 +3,9 @@ package projeto.com.impacta.cadastro.test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import projeto.com.impacta.cadastro.java.controller.PessoaController;
-import projeto.com.impacta.cadastro.java.exception.PessoaException;
-import projeto.com.impacta.cadastro.java.model.Pessoa;
+import projeto.com.impacta.cadastro.controller.PessoaController;
+import projeto.com.impacta.cadastro.exception.PessoaException;
+import projeto.com.impacta.cadastro.model.Pessoa;
 
 import java.util.List;
 
@@ -91,12 +91,48 @@ public class PessoaControllerTeste {
   }
 
   @Test
-  void buscarListaDePessoa() {
+  void buscarListaDePessoaOk() {
 
-   List<Pessoa> pessoas = pessoaController.buscarTodos();
+    List<Pessoa> pessoas = pessoaController.buscarTodos();
 
-   Assertions.assertTrue(pessoas.isEmpty());
+    Assertions.assertFalse(pessoas.isEmpty());
+
+    pessoas.forEach(System.out::println);
   }
 
+  @Test
+  void excluirIdPessoa() {
+    try {
+      int idPessoa = 11;
+      pessoaController.excluir(idPessoa);
+      Pessoa pessoa = pessoaController.buscarPorIdPessoa(idPessoa);
+      Assertions.assertNull(pessoa);
+    } catch (RuntimeException e) {
+      e.printStackTrace();
+      Assertions.assertTrue(e instanceof PessoaException);
+    }
+  }
 
+  @Test
+  void atualizarNomeOk() {
+
+    Pessoa pessoa = new Pessoa(1, "Maria das Graças", "12345678912");
+
+    Pessoa pessoaEntity = pessoaController.atualizar(pessoa);
+
+    Assertions.assertNotNull(pessoaEntity);
+    Assertions.assertEquals(pessoa.getNome(), pessoaEntity.getNome());
+
+  }
+
+  @Test
+  void atualizarCpfExistenteIdDiferenteNok() {
+
+    Pessoa pessoa = new Pessoa(1, "Maria das Graças", "12345978932");
+
+    Pessoa pessoaEntity = pessoaController.atualizar(pessoa);
+    Assertions.assertNotNull(pessoaEntity);
+    Assertions.assertNotEquals(pessoa.getCpf(), pessoaEntity.getCpf());
+
+  }
 }

@@ -1,7 +1,7 @@
-package projeto.com.impacta.cadastro.java.controller;
+package projeto.com.impacta.cadastro.controller;
 
-import projeto.com.impacta.cadastro.java.model.Pessoa;
-import projeto.com.impacta.cadastro.java.service.PessoaService;
+import projeto.com.impacta.cadastro.model.Pessoa;
+import projeto.com.impacta.cadastro.service.PessoaService;
 
 import java.util.List;
 
@@ -29,6 +29,14 @@ public class PessoaController {
 
   public List<Pessoa> buscarTodos(){
     return pessoaService.buscarTodos();
+  }
+
+  public void excluir(int idPessoa){
+    pessoaService.excluir(idPessoa);
+  }
+
+  public Pessoa atualizar(Pessoa pessoa){
+    return pessoaService.atualizar(pessoa);
   }
 
 }
