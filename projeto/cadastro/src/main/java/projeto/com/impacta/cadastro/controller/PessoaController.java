@@ -17,19 +17,29 @@ import projeto.com.impacta.cadastro.service.PessoaService;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class PessoaController implements Initializable {
 
   @FXML
-  private Button buttonAtualizar;
+  private Button buttomAdicionar;
 
   @FXML
-  private Button buttonExcluir;
+  private Button buttomAlterar;
 
   @FXML
-  private Button buttonSalvar;
+  private Button buttomExcluir;
+
+  @FXML
+  private TableColumn<Pessoa, String> columnCpf;
+
+  @FXML
+  private TableColumn<Pessoa, String> columnIdPessoa;
+
+  @FXML
+  private TableColumn<Pessoa, String> columnNome;
+
+  @FXML
+  private TableView<Pessoa> table;
 
   @FXML
   private TextField inputCpf;
@@ -37,119 +47,120 @@ public class PessoaController implements Initializable {
   @FXML
   private TextField inputNome;
 
-  @FXML
-  private TableView<Pessoa> table;
+  PessoaService pessoaService;
+  int indexTabela;
+  int idPessoa;
 
   @FXML
-  private TableColumn<Pessoa, String> idColumn;
+  void adicionar(ActionEvent event) {
 
+    String nome = inputNome.getText();
+    String cpf = inputCpf.getText();
+
+    Pessoa pessoa = new Pessoa(nome, cpf);
+    Pessoa pessoaEntity = pessoaService.salvar(pessoa);
+
+    Alert alert;
+    if (pessoaEntity != null) {
+      atualizartabela();
+      alert = new Alert(Alert.AlertType.INFORMATION);
+      alert.setTitle("Cadastro");
+      alert.setHeaderText("Cadastro ok");
+      alert.setContentText("cadastrado com sucesso");
+      alert.showAndWait();
+    } else {
+      alert = new Alert(Alert.AlertType.ERROR);
+      alert.setTitle("Cadastro");
+      alert.setHeaderText("Cadastro nok");
+      alert.setContentText("cadastrado não realizado");
+      alert.showAndWait();
+    }
+  }
 
   @FXML
-  private TableColumn<Pessoa, String> nomeColumn;
+  void alterar(ActionEvent event) {
+    String nome = inputNome.getText();
+    String cpf = inputCpf.getText();
 
-  @FXML
-  private TableColumn<Pessoa, String> cpfColumn;
+    Pessoa pessoa = new Pessoa(idPessoa, nome, cpf);
+    Pessoa pessoaEntity = pessoaService.atualizar(pessoa);
 
-
-  PessoaService pessoaService = new PessoaService();
-  int myIndex;
-  int id;
-
-
-  @FXML
-  void atualizar(ActionEvent event) {
-
+    Alert alert;
+    if (pessoaEntity != null) {
+      atualizartabela();
+      alert = new Alert(Alert.AlertType.INFORMATION);
+      alert.setTitle("Alteração");
+      alert.setHeaderText("Alteração ok");
+      alert.setContentText("Alterado com sucesso");
+      alert.showAndWait();
+    } else {
+      alert = new Alert(Alert.AlertType.ERROR);
+      alert.setTitle("Alteração");
+      alert.setHeaderText("Alteração nok");
+      alert.setContentText("Alterado falhou");
+      alert.showAndWait();
+    }
   }
 
   @FXML
   void excluir(ActionEvent event) {
 
+    pessoaService.excluir(idPessoa);
+    atualizartabela();
   }
 
-  @FXML
-  void salvar(ActionEvent event) {
-    Alert alert;
+  void atualizartabela() {
     try {
-      String nome = inputNome.getText();
-      String cpf = inputCpf.getText();
+      ObservableList<Pessoa> pessoas = FXCollections.observableArrayList();
+      pessoas.addAll(pessoaService.buscarTodos());
 
-      Pessoa pessoa = new Pessoa(nome, cpf);
-      Pessoa pessoaEntity = pessoaService.salvar(pessoa);
+      table.setItems(pessoas);
 
-      if (pessoaEntity != null) {
-        alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Cadastro");
-        alert.setHeaderText("Cadastro ok");
-        alert.setContentText("Cadastro com  sucesso");
-        alert.showAndWait();
-      }
+      columnIdPessoa.setCellValueFactory(pessoa -> {
+        return new SimpleStringProperty(String.valueOf(pessoa.getValue().getIdPessoa()));
+      });
+
+      columnNome.setCellValueFactory(pessoa -> {
+        return new SimpleStringProperty(pessoa.getValue().getNome());
+      });
+
+      columnCpf.setCellValueFactory(pessoa -> {
+        return new SimpleStringProperty(pessoa.getValue().getCpf());
+      });
+
     } catch (RuntimeException e) {
-      Logger.getLogger(e.getMessage());
-      alert = new Alert(Alert.AlertType.ERROR);
-      alert.setTitle("Cadastro");
-      alert.setHeaderText("Cadastro nok");
-      alert.setContentText("Cadastro não relizado");
-      alert.showAndWait();
+      e.printStackTrace();
     }
-
   }
 
-  public void atualizaTabela() {
-    ObservableList<Pessoa> pessoas = FXCollections.observableArrayList();
+  void linhaSelecionadaTabela() {
+    table.setRowFactory(pessoaTableView -> {
+      TableRow<Pessoa> linha = new TableRow<>();
+      linha.setOnMouseClicked(mouseEvent -> {
+        if (mouseEvent.getClickCount() == 2 && !linha.isEmpty()) {
 
-    pessoas.addAll(pessoaService.buscarTodos());
+          indexTabela = table.getSelectionModel().getSelectedIndex();
 
-    table.setItems(pessoas);
-    idColumn.setCellValueFactory(pessoa ->
-      new SimpleStringProperty(String.valueOf(pessoa.getValue().getIdPessoa())));
+          idPessoa = table.getItems().get(indexTabela).getIdPessoa();
 
-    nomeColumn.setCellValueFactory(pessoa -> new SimpleStringProperty(pessoa.getValue().getNome()));
-    cpfColumn.setCellValueFactory(pessoa -> new SimpleStringProperty(pessoa.getValue().getCpf()));
+          String nome = table.getItems().get(indexTabela).getNome();
+          inputNome.setText(nome);
 
+          String cpf = table.getItems().get(indexTabela).getCpf();
+          inputCpf.setText(cpf);
+
+          System.out.printf(idPessoa + nome + cpf);
+        }
+      });
+      return linha;
+    });
   }
-
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    atualizaTabela();
-    table();
+    pessoaService = new PessoaService();
+    atualizartabela();
+    linhaSelecionadaTabela();
   }
 
-  public void table() {
-    ObservableList<Pessoa> students = FXCollections.observableArrayList();
-    try {
-
-      table.setItems(students);
-      idColumn.setCellValueFactory(f -> {
-        String idPessoa = String.valueOf(f.getValue().getIdPessoa());
-        return new SimpleStringProperty(idPessoa);
-      });
-      nomeColumn.setCellValueFactory(f -> {
-        return new SimpleStringProperty(f.getValue().getNome());
-      });
-      cpfColumn.setCellValueFactory(f -> {
-        return new SimpleStringProperty(f.getValue().getCpf());
-      });
-
-
-    } catch (RuntimeException ex) {
-      Logger.getLogger(PessoaController.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    table.setRowFactory(tv -> {
-      TableRow<Pessoa> myRow = new TableRow<>();
-      myRow.setOnMouseClicked(event ->
-      {
-        if (event.getClickCount() == 1 && (!myRow.isEmpty())) {
-          myIndex = table.getSelectionModel().getSelectedIndex();
-
-          id = Integer.parseInt(String.valueOf(table.getItems().get(myIndex).getIdPessoa()));
-          inputNome.setText(table.getItems().get(myIndex).getNome());
-          inputCpf.setText(table.getItems().get(myIndex).getCpf());
-        }
-      });
-      return myRow;
-    });
-
-  }
 }
-

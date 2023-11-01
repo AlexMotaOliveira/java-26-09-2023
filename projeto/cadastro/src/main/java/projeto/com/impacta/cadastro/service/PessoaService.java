@@ -16,8 +16,8 @@ public class PessoaService {
   }
 
   public Pessoa salvar(Pessoa pessoa) {
+    // TODO: 30/10/2023 validar se não esta vazio ou em branco alem de nulo
     if (pessoa.getNome() != null && pessoa.getCpf() != null) {
-      // TODO: 26/10/2023 validar se o cpf já esta cadastrado
       System.out.println("service Pessoa");
 
       return pessoaRepository.save(pessoa);

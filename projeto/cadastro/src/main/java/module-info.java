@@ -1,16 +1,13 @@
 module projeto.com.impacta.cadastro {
-  requires javafx.controls;
-  requires javafx.fxml;
+    requires javafx.controls;
+    requires javafx.fxml;
 
-  requires com.dlsc.formsfx;
+    requires com.dlsc.formsfx;
+    requires java.sql;
 
-  requires java.sql;
+    opens projeto.com.impacta.cadastro to javafx.fxml;
+    exports projeto.com.impacta.cadastro;
 
-  requires org.junit.jupiter.api;
-
-  opens projeto.com.impacta.cadastro.controller to javafx.fxml;
-  exports projeto.com.impacta.cadastro.controller;
-
-  opens projeto.com.impacta.cadastro to javafx.fxml;
-  exports projeto.com.impacta.cadastro;
+    opens projeto.com.impacta.cadastro.controller to javafx.fxml;
+    exports projeto.com.impacta.cadastro.controller;
 }
